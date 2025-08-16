@@ -1,11 +1,10 @@
 import React from "react";
 import "./BottomNavbar.css";
-import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
 import { Fade } from "react-awesome-reveal";
+import { Box } from "@mui/material";
 
-import { Box, Typography } from "@mui/material";
-const Navbar = () => {
+const BottomNavbar = () => {
   return (
     <Box className="bottomNavbar">
       <p className="bottomConnect">Connect with us</p>
@@ -20,7 +19,6 @@ const Navbar = () => {
             <BsFacebook size={30} className="icon" />
           </a>
         </Fade>
-
         <Fade top>
           <a
             style={{ color: "black" }}
@@ -31,18 +29,6 @@ const Navbar = () => {
             <BsTwitter size={30} className="icon" />
           </a>
         </Fade>
-
-        {/* <Fade bottom>
-          <a
-            style={{ color: "black" }}
-            target="_blank"
-            rel="noreferrer"
-            href="https://www.instagram.com/__paras__sharma__/"
-          >
-            <BsInstagram size={30} className="icon" />
-          </a>
-        </Fade> */}
-
         <Fade right>
           <a
             style={{ color: "black" }}
@@ -57,19 +43,10 @@ const Navbar = () => {
       <p className="rights">
         Copyright 2023 SKILLUP - All rights reserved <br /> Created and
         Maintained by
-        {/* <a
-          href="https://github.com/Parassharma1999"
-          rel="noreferrer"
-          target="_blank"
-          style={{ color: "black", cursor: "pointer", textDecoration: "none" }}
-        > 
-         </a>*/}
-
-          <b> Shafak...Abhishek Chauhan...Abhishek Tiwari...</b>
-       
+        <b> Shafak...Abhishek Chauhan...Abhishek Tiwari...</b>
       </p>
     </Box>
   );
 };
 
-export default Navbar;
+export default BottomNavbar;
