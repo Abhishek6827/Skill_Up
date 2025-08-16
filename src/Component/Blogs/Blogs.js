@@ -4,6 +4,7 @@ import React, {
   useContext,
   useRef,
   useCallback,
+  useMemo,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
@@ -217,7 +218,7 @@ const Blogs = () => {
   const { setSingleBlogDetail } = useContext(singleBlog);
   const navigate = useNavigate();
 
-  const Category = [
+  const Category = useMemo(() => [
     "All",
     "Cooking",
     "Computer science",
@@ -225,7 +226,7 @@ const Blogs = () => {
     "Dance",
     "Photography",
     "Art & Craft",
-  ];
+  ], []);
 
   const ArticleHandler = (Title, data, Image, Date, author, readTime, tags) => {
     try {

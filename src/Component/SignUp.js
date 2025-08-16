@@ -32,7 +32,6 @@ const schema = yup.object().shape({
 });
 
 const SignUp = () => {
-  const [registerEmail, setRegisterEmail] = useState("");
   const [correctEmail, setCorrectEmail] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -49,12 +48,12 @@ const SignUp = () => {
 
   // !--------------------METHODS STARTS--------------------------!
 
-  const signup = async (e) => {
+  const signup = async (data) => {
     // e.preventDefault();
     setLoading(!loading);
 
     try {
-      await sendEmailLink(auth, registerEmail);
+      await sendEmailLink(auth, data.Email.trim());
       setCorrectEmail(true);
       setMessage("Please check your Email to proceed further");
       localStorage.setItem("user", "loggedIn");
@@ -108,7 +107,6 @@ const SignUp = () => {
 
   useEffect(() => {
     return () => {
-      setRegisterEmail("");
       setLoading(false);
       setMessage("");
     };
@@ -247,7 +245,6 @@ const SignUp = () => {
               {...register("Email")}
               margin="dense"
               sx={{ width: "100%" }}
-              onChange={(e) => setRegisterEmail(e.target.value)}
               required
             />
 

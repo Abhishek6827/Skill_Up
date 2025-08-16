@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c578743f.css",
+    "main.js": "/static/js/main.0b73967a.js",
+    "static/media/paras.png": "/static/media/paras.c58543698c35951123d9.png",
+    "static/media/Study.svg": "/static/media/Study.7f28bb97b95a5735a611def9d9f9c75b.svg",
+    "static/media/Book.svg": "/static/media/Book.e776f7ae8bc5ef0a45f77b43a5b2e6c1.svg",
+    "static/media/Live.svg": "/static/media/Live.7ae0388fae88bf6a2d1b55033ca2d0b0.svg",
+    "static/media/SuperMan.svg": "/static/media/SuperMan.2a1587442dc096ce64b93c015e267946.svg",
+    "static/media/ForgotPassword.svg": "/static/media/ForgotPassword.2d957a7c63153b6259d855e09b56d980.svg",
+    "static/media/emptyBlog.svg": "/static/media/emptyBlog.dde30e85e43aab3ed04203586fe3daf4.svg",
+    "static/media/personalform.svg": "/static/media/personalform.03150738b4bbe343b3e6b81c56441cca.svg",
+    "static/media/Signup.svg": "/static/media/Signup.66a5e90773ddbdd735f6a46a1c44f1ff.svg",
+    "static/media/certificate.svg": "/static/media/certificate.a22164ef8e33b1b4d1f594189b474229.svg",
+    "static/media/emptySession.svg": "/static/media/emptySession.8adc300c64c8c05ab571ed287d7c618c.svg",
+    "static/media/SKIllUpLogo.svg": "/static/media/SKIllUpLogo.29f5934fcae05264d78166c0338dd405.svg",
+    "static/media/Background.svg": "/static/media/Background.7ef184560b7df588c852.svg",
+    "static/media/CloudBackground.svg": "/static/media/CloudBackground.9842a6070e39547a5f06.svg",
+    "index.html": "/index.html",
+    "static/media/CloudyBG.svg": "/static/media/CloudyBG.6a42ea4f1063916c3dc0.svg",
+    "main.c578743f.css.map": "/static/css/main.c578743f.css.map",
+    "main.0b73967a.js.map": "/static/js/main.0b73967a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c578743f.css",
+    "static/js/main.0b73967a.js"
+  ]
+}
