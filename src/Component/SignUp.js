@@ -6,12 +6,12 @@ import {
   Box,
   FormControl,
   Alert,
-  Button,  
+  Button,
 } from "@mui/material";
-import "./SignUp.css"
-import {useForm} from  "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup"
-import "yup-phone"
+import "./SignUp.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import "yup-phone";
 import * as yup from "yup";
 import { auth, GoogleAuth, FacebookAuth, db } from "../firebase";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -28,29 +28,26 @@ import { FormContext } from "./Context/DetailFormContext.js";
 
 // !----------------------FORM VALIDATION SCHEMA---------------------------!
 const schema = yup.object().shape({
-   Email: yup.string().email().required()
+  Email: yup.string().email().required(),
 });
-  
-
 
 const SignUp = () => {
   const [registerEmail, setRegisterEmail] = useState("");
-  const [correctEmail,setCorrectEmail] = useState(false);
+  const [correctEmail, setCorrectEmail] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { signInWithGoogle, signInWithFacebook, sendEmailLink } = useAuth();  //Method imported from AUth
-  
+  const { signInWithGoogle, signInWithFacebook, sendEmailLink } = useAuth(); //Method imported from AUth
+
   const {
     showPersonaldetailForm,
     showEducationForm,
     setshowPersonaldetailForm,
     //setshowEducationForm,
   } = useContext(FormContext);
-  
-  
-// !--------------------METHODS STARTS--------------------------!  
+
+  // !--------------------METHODS STARTS--------------------------!
 
   const signup = async (e) => {
     // e.preventDefault();
@@ -78,7 +75,7 @@ const SignUp = () => {
       if (Snapshot.exists()) {
         navigate("/Homepage", { replace: true });
       } else navigate("/personalForm", { replace: true });
-       setshowPersonaldetailForm(true);
+      setshowPersonaldetailForm(true);
       setLoading(false);
     } catch (error) {
       setLoading(!loading);
@@ -98,12 +95,12 @@ const SignUp = () => {
       setLoading(!loading);
     } catch (error) {
       setLoading(false);
-      setError("Account exists with different credential")
+      setError("Account exists with different credential");
       console.log(error);
     }
   };
 
-// !-----------------------------METHODS ENDS-------------------------!
+  // !-----------------------------METHODS ENDS-------------------------!
 
   // setTimeout(() => {
   //   setCorrectEmail(false);
@@ -117,43 +114,43 @@ const SignUp = () => {
     };
   }, []);
 
-  const {register, handleSubmit, formState:{errors}} = useForm({
-    resolver:yupResolver(schema)
-  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   return (
-
-    
-    <Box
-
-      
-      className="signUpContainer"
-    >
-      <div
-        className="Left"
-      >
-        <Link to="/" style={{display:"flex",justifyContent:"center"}}>
-        <img src={Logo} alt="Logo" className="SignupLogo" style={{marginBottom:"3%"}}/>
+    <Box className="signUpContainer">
+      <div className="Left">
+        <Link to="/" style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            src={Logo}
+            alt="Logo"
+            className="SignupLogo"
+            style={{ marginBottom: "3%" }}
+          />
         </Link>
 
         <Typography
           style={{
-          fontSize:"18px",
-          fontWeight:"500"
-          }}>
-         Please Sign Up/Login to continue !
+            fontSize: "18px",
+            fontWeight: "500",
+          }}
+        >
+          Please Sign Up/Login to continue !
         </Typography>
         <img
           src={Signup}
           alt="Signup"
           className="SignupImage"
           // border={"2px solid black"}
-          />
+        />
       </div>
 
-      <div
-        className="Right"
-      >
+      <div className="Right">
         {!showPersonaldetailForm && !showEducationForm && (
           <FormControl
             sx={{
@@ -165,9 +162,9 @@ const SignUp = () => {
               // alignItems:"center",
               boxShadow: 3,
               bgcolor: "rgb(255,255,252,0.41)",
-               backdropFilter: "blur(10px)",
-               p: 2,
-               borderRadius:"8px"
+              backdropFilter: "blur(10px)",
+              p: 2,
+              borderRadius: "8px",
               // marginTop:"5rem"
             }}
           >
@@ -180,10 +177,14 @@ const SignUp = () => {
                 {error}
               </Alert>
             )}
-                {correctEmail && <Alert severity="success" style={{ marginBottom: "1rem",position:"relative" }}>
+            {correctEmail && (
+              <Alert
+                severity="success"
+                style={{ marginBottom: "1rem", position: "relative" }}
+              >
                 {message}
-                </Alert>}
-
+              </Alert>
+            )}
 
             <Box
               display="flex"
@@ -219,9 +220,9 @@ const SignUp = () => {
 
             <Box
               display="flex"
-              justifyCenter={"center"}
-              flexDirection={"column"}
-              alignContent={"center"}
+              justifyContent="center"
+              flexDirection="column"
+              alignContent="center"
             >
               <Box display={"flex"} margin={"0.5rem"}>
                 <hr
@@ -249,8 +250,8 @@ const SignUp = () => {
               onChange={(e) => setRegisterEmail(e.target.value)}
               required
             />
-             
-             <p style={{color:"red"}}>{errors.Email?.message}</p>
+
+            <p style={{ color: "red" }}>{errors.Email?.message}</p>
 
             <LoadingButton
               loading={loading}

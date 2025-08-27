@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import BottomNavbar from "../Navbar/BottomNavbar/BottomNavbar";
-import { doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import "./EducationForm.css";
-import { FormControl, Box, Typography, Alert } from "@mui/material";
+import { Box, Typography, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { db, auth } from "../../firebase";
 import { useForm } from "react-hook-form";
@@ -21,24 +20,21 @@ const schema = yup.object().shape({
 });
 
 const EducationForm = () => {
-  // const {setshowEducationalForm} = useContext(FormContext);
   const [error, setError] = useState(false);
-  const [info, setInfo] = useState([]);
-
+  const [info, setInfo] = useState({});
   const navigate = useNavigate();
-  // const docReference = doc(db,"user",currentUser.uid)
-  const [educationalDetails, setEducationalDetails] = useState({
-    heighestQualification: "",
-    institutionName: "",
-    institutionCity: "",
-    institutionState: "",
-    Achievement: "",
-  });
 
   useEffect(() => {
     const getData = async () => {
-      const Data = await getDoc(doc(db, "user", auth.currentUser.uid));
-      setInfo(Data.data());
+      try {
+        const Data = await getDoc(doc(db, "user", auth.currentUser.uid));
+        if (Data.exists()) {
+          setInfo(Data.data());
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setError("Failed to load user data");
+      }
     };
     getData();
   }, []);
@@ -46,29 +42,28 @@ const EducationForm = () => {
   console.log(info);
 
   const clickHandler = async (data) => {
-    await setDoc(doc(db, "user", auth.currentUser.uid), data, { merge: true });
-
-    if (info.UserType === "Volunteer") navigate("/documentForm");
-    else navigate("/HomePage");
+    try {
+      await setDoc(doc(db, "user", auth.currentUser.uid), data, {
+        merge: true,
+      });
+      if (info.UserType === "Volunteer") {
+        navigate("/documentForm");
+      } else {
+        navigate("/HomePage");
+      }
+    } catch (error) {
+      console.error("Error saving education data:", error);
+      setError("Failed to save education data");
+    }
   };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  //  const submitHandler = (data) => {
-  //    console.log(data);
-  //    reset();
-  //  };
-
-  //   setTimeout(() => {
-  //     setError("");
-  //   }, [5000]);
 
   return (
     <>
@@ -80,18 +75,15 @@ const EducationForm = () => {
       >
         <Box display={"flex"} flex={0.5}>
           <img
-            src={study}
+            src={study || "/placeholder.svg"}
             alt="Form"
             width="100%"
             style={{ marginTop: "-100px" }}
           />
         </Box>
-
         <Box
           sx={{
-            // width: "80%",
             height: "auto",
-            // border:"2px solid black",
             display: "flex",
             flexDirection: "column",
             justifyItems: "center",
@@ -107,9 +99,7 @@ const EducationForm = () => {
           >
             Educational Background
           </Typography>
-
           {error && <Alert severity="error">{error}</Alert>}
-
           <form
             className="EducationForm"
             onSubmit={handleSubmit(clickHandler)}
@@ -122,7 +112,7 @@ const EducationForm = () => {
                 placeholder="10th/12th/UG/PG"
                 {...register("Qualification")}
               >
-              <option value="5th Grade">5th Grade</option>
+                <option value="5th Grade">5th Grade</option>
                 <option value="6th Grade">6th Grade</option>
                 <option value="7th Grade">7th Grade</option>
                 <option value="8th Grade">8th Grade</option>
@@ -132,9 +122,7 @@ const EducationForm = () => {
                 <option value="12th Grade">12th Grade</option>
                 <option value="Undergraduate">Undergraduate</option>
                 <option value="Postgraduate">Postgraduate</option>
-
               </select>
-
               <p className="errorMessage">{errors.Qualification?.message}</p>
             </div>
 
@@ -196,9 +184,8 @@ const EducationForm = () => {
                 <option value="Uttar Pradesh">Uttar Pradesh</option>
                 <option value="Uttarakhand">Uttarakhand</option>
               </select>
-
               <p className="errorMessage">
-                {errors.InstituteState && "Please Select your Institute City"}
+                {errors.InstituteState && "Please Select your Institute State"}
               </p>
             </div>
 
@@ -208,17 +195,19 @@ const EducationForm = () => {
                 name="Institute City"
                 {...register("InstituteCity")}
                 className="EducationformInput"
+                placeholder="Enter your institute city"
               />
               <p className="errorMessage">{errors.InstituteCity?.message}</p>
             </div>
 
-            <label>Any Achievement <span style={{color:"grey"}}> (optional)</span></label>
+            <label>
+              Any Achievement <span style={{ color: "grey" }}> (optional)</span>
+            </label>
             <div>
               <textarea
                 name="Achievement"
                 placeholder="Anything of which you are proud of OR got recognised"
                 {...register("Achievement")}
-                // className="EducationformInput"
                 rows={10}
                 cols={20}
                 style={{
@@ -232,21 +221,7 @@ const EducationForm = () => {
               <p className="errorMessage">{errors.Achievement?.message}</p>
             </div>
 
-            <button
-              type="submit"
-              className="FormSubmitButton"
-              // style={{
-              //   width: "8rem",
-              //   height: "2.5rem",
-              //   fontSize: "15px",
-              //   marginLeft: "65%",
-              //   border: "none",
-              //   backgroundColor: "purple",
-              //   color: "white",
-              //   padding: "5px",
-              //   borderRadius: "5px",
-              // }}
-            >
+            <button type="submit" className="FormSubmitButton">
               Next
             </button>
           </form>

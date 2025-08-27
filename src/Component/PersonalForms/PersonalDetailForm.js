@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { auth } from "../../firebase";
-import { FormContext } from "../Context/DetailFormContext.js.js";
+import { FormContext } from "../Context/DetailFormContext.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import LandingNavbar from "../LandPage/LandingPageNavbar"
+import LandingNavbar from "../LandPage/LandingPageNavbar";
 import * as yup from "yup";
 import "yup-phone";
 import personalForm from "../SVG/personalform.svg";
+
 const schema = yup.object().shape({
-  // UserType: yup.string().required(),
   FullName: yup.string().min(2, "Too Short!").max(50, "Too Long!").required(),
   Gender: yup.string().required(),
   Email: yup.string().email().required(),
@@ -29,76 +29,47 @@ const PersonalDetailForm = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const { showPersonaldetailForm, showEducationForm } = useContext(FormContext);
-
   const navigate = useNavigate();
-  // const docReference = doc(db,"user",currentUser.uid)
-  const [fullname, setFullname] = useState("");
-  const [gender, setGender] = useState("");
-  const [phoneno, setPhoneno] = useState();
   const [error, setError] = useState("");
-  const [userType, setUserType] = useState("");
 
   useEffect(() => {
     return () => {
-      setFullname("");
-      setGender("");
-      setPhoneno("");
       setError("");
-      setUserType("");
     };
   }, []);
 
   const clickHandler = async (data) => {
-    console.log(data);
-    // if (userType !=="" && gender !== "") {
-    //  setshowEducationForm(true);
-    await setDoc(
-      doc(db, "user", auth.currentUser.uid),
-      // {
-      //   name: fullname,
-      //   phoneno: phoneno,
-      //   gender: gender,
-      //   userType: localStorage.getItem("userType"),
-      // }
-      data
-    );
-    navigate("/educationForm", { replace: true });
-    // navigate("/Homepage");
-    // setshowPersonaldetailForm(false);
-    //   return;
-    // } else {
-    //   setError("please fill all details");
-    // }
+    try {
+      console.log(data);
+      await setDoc(doc(db, "user", auth.currentUser.uid), data);
+      navigate("/educationForm", { replace: true });
+    } catch (error) {
+      console.error("Error saving personal details:", error);
+      setError("Failed to save personal details");
+    }
   };
-
-  function changeHandler(e) {
-    setUserType(e.target.value);
-    localStorage.setItem("userType", e.target.value);
-  }
 
   console.log(showPersonaldetailForm);
   console.log(showEducationForm);
 
-  // setTimeout(() => {
-  //   setError("");
-  // }, [5000]);
-
   return (
     <>
-    <LandingNavbar/>
+      <LandingNavbar />
       <Box
         className="PerosnalFormContainer"
-
         display="flex"
         flexDirection="row"
-         bgcolor={"transparent"}
+        bgcolor={"transparent"}
         height="100vh"
         margin="6rem 3rem 3rem 3rem"
       >
         <Box className="leftContainer" display={"flex"} flex="0.5">
-          <img src={personalForm} alt="Form" width="100%" />
+          <img
+            src={personalForm || "/placeholder.svg"}
+            alt="Form"
+            width="100%"
+          />
         </Box>
-
         <Box
           className="rightContainer"
           sx={{
@@ -120,14 +91,12 @@ const PersonalDetailForm = () => {
           >
             Personal Details
           </Typography>
-
           {error && <Alert severity="error">{error}</Alert>}
-
           <form
             className="personalDetailForm"
             onSubmit={handleSubmit(clickHandler)}
           >
-            <label style={{fontWeight:"500"}}>User Type</label>
+            <label style={{ fontWeight: "500" }}>User Type</label>
             <div>
               <select
                 className="formInput"
@@ -140,7 +109,7 @@ const PersonalDetailForm = () => {
               <p className="errorMessage">{errors.UserType?.message}</p>
             </div>
 
-            <label style={{fontWeight:"500"}}>Full Name </label>
+            <label style={{ fontWeight: "500" }}>Full Name </label>
             <div>
               <input
                 {...register("FullName")}
@@ -150,7 +119,7 @@ const PersonalDetailForm = () => {
               <p className="errorMessage">{errors.FullName?.message}</p>
             </div>
 
-            <label style={{fontWeight:"500"}}>Select Gender </label>
+            <label style={{ fontWeight: "500" }}>Select Gender </label>
             <div
               style={{
                 display: "flex",
@@ -158,7 +127,7 @@ const PersonalDetailForm = () => {
                 cursor: "pointer",
               }}
             >
-              <label style={{color:"grey"}} htmlFor="male">
+              <label style={{ color: "grey" }} htmlFor="male">
                 <input
                   style={{ cursor: "pointer" }}
                   type="radio"
@@ -167,9 +136,9 @@ const PersonalDetailForm = () => {
                   value={"Male"}
                   name="Gender"
                 />
-               &nbsp; Male
+                &nbsp; Male
               </label>
-              <label style={{color:"grey"}} htmlFor="female">
+              <label style={{ color: "grey" }} htmlFor="female">
                 <input
                   style={{ cursor: "pointer" }}
                   type="radio"
@@ -178,9 +147,9 @@ const PersonalDetailForm = () => {
                   value={"Female"}
                   name="Gender"
                 />
-               &nbsp; Female
+                &nbsp; Female
               </label>
-              <label style={{color:"grey"}} htmlFor="other">
+              <label style={{ color: "grey" }} htmlFor="other">
                 <input
                   style={{ cursor: "pointer" }}
                   type="radio"
@@ -189,15 +158,14 @@ const PersonalDetailForm = () => {
                   value={"Other"}
                   name="Gender"
                 />
-               &nbsp; Other
+                &nbsp; Other
               </label>
             </div>
-
             <p className="errorMessage">
               {errors.Gender && "Please Select Gender"}
             </p>
 
-            <label style={{fontWeight:"500"}}>Email</label>
+            <label style={{ fontWeight: "500" }}>Email</label>
             <div>
               <input
                 name="Email"
@@ -208,7 +176,7 @@ const PersonalDetailForm = () => {
               <p className="errorMessage">{errors.Email?.message}</p>
             </div>
 
-            <label style={{fontWeight:"500"}}>Phone No: </label>
+            <label style={{ fontWeight: "500" }}>Phone No: </label>
             <div>
               <input
                 label="Phone No"
@@ -220,10 +188,7 @@ const PersonalDetailForm = () => {
               <p className="errorMessage">{errors.PhoneNo?.message}</p>
             </div>
 
-            <button
-              type="submit"
-              className="FormSubmitButton"
-            >
+            <button type="submit" className="FormSubmitButton">
               Next
             </button>
           </form>

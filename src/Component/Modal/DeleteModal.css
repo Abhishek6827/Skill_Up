@@ -1,76 +1,76 @@
-.modalBackground{
-    width: 100vw;
-    height:100vh;
-    background-color: rgba(255, 255, 255, 0.504);
-    backdrop-filter:blur(4px);
-    position:fixed;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items:center;
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.504);
+  backdrop-filter: blur(4px);
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.modalContainer{
+.modalContainer {
   width: 35%;
   height: 30%;
-  background-color:rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 10px 3px rgba(120, 119, 119, 0.423);
-  padding:0.5rem 1rem 1rem 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
 }
 
-button{
-cursor: pointer;
+button {
+  cursor: pointer;
 }
 
-.body{
-    height: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: red;
+.body {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
 }
 
-.titleCloseButton{
- display:flex;
- justify-content: end;
+.titleCloseButton {
+  display: flex;
+  justify-content: flex-end;
 }
 
-#closeButton{
- background-color: transparent;
- font-size: 22px;
- border:none;
+#closeButton {
+  background-color: transparent;
+  font-size: 22px;
+  border: none;
 }
 
-.footer{
- display: flex;
- width:100%;
- justify-content: center;
- align-items: center;
+.footer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-.footerButton{
-color:white;
-font-size: 18px;
-font-weight: 600;
-padding:20px;
-border-radius: 10px;
-width: fit-content;
-height: fit-content;
-padding: 10px;
-margin: 0 3rem;
+.footerButton {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 20px;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin: 0 3rem;
 }
 
-#cancelButton{
-background-color: rgb(5, 96, 207);
-border: 1px solid rgb(5, 111, 240);
+#cancelButton {
+  background-color: rgb(5, 96, 207);
+  border: 1px solid rgb(5, 111, 240);
 }
 
-#deleteButton{
-    background-color: rgb(182, 14, 14);
-    border: 1px solid rgb(248, 6, 10);   
+#deleteButton {
+  background-color: rgb(182, 14, 14);
+  border: 1px solid rgb(248, 6, 10);
 }
