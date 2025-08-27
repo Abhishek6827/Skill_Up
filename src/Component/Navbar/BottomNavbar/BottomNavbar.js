@@ -43,7 +43,14 @@ const BottomNavbar = () => {
       <p className="rights">
         Copyright 2025 SKILLUP - All rights reserved <br /> Created and
         Maintained by
-        <b> Abhishek Tiwari ❤️</b>
+        {/* <a
+          href="https://github.com/Parassharma1999"
+          rel="noreferrer"
+          target="_blank"
+          style={{ color: "black", cursor: "pointer", textDecoration: "none" }}
+        > 
+         </a>*/}
+        <b> Shafak...Abhishek Chauhan...Abhishek Tiwari...</b>
       </p>
     </Box>
   );
