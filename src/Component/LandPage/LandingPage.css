@@ -1,44 +1,41 @@
-:root{
-   --landingPageBackgroundColor:rgba(255, 127, 80, 0);
- }
+:root {
+  --landingPageBackgroundColor: rgba(255, 127, 80, 0);
+}
 
-.superman{
- animation: movesuperman 5s linear  infinite ;
+.superman {
+  animation: movesuperman 5s linear infinite;
 }
 @keyframes movesuperman {
-    0%{
-       transform: translateY(0px);
-    }
-    50%{
-        transform: translateY(20px);
-     }
-     100%{
-        transform: translateY(0px);
-
-     }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
-.mainContainer{
-
-background-image: url("../SVG/CloudBackground.svg");
-background-repeat:repeat-x ;
-height: 100vh;
-background-attachment: scroll;
+.mainContainer {
+  background-image: url("../SVG/CloudBackground.svg");
+  background-repeat: repeat-x;
+  height: 100vh;
+  background-attachment: scroll;
 }
 
-.superman{
-   width: 450px;
-   height: 525px;
-   z-index: 2;
-   position: absolute;
+.superman {
+  width: 450px;
+  height: 525px;
+  z-index: 2;
+  position: absolute;
 }
 
-#Right{
-   display: flex;
-   flex: 0.4 1;
-   position: relative;
-   margin-top: 4.5rem;
+#Right {
+  display: flex;
+  flex: 0.4 1;
+  position: relative;
+  margin-top: 4.5rem;
 }
-
 
 /* .icons:hover{
    transform:scale(1.1);
@@ -46,292 +43,279 @@ background-attachment: scroll;
    box-shadow: 1px 1px 4px 1px black;
 } */
 
-
-
-.Quote{
-   text-align: center;
-   margin: 0;
-   font-family: Montserrat,sans-serif;
-   font-weight: 400;
-   font-size: 1rem;
-   line-height: 1.5;
-   margin-top: 40px;
-   bottom: 100px;
-   font-size: 25px;
-   font-weight: 600;
+.Quote {
+  text-align: center;
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 40px;
+  bottom: 100px;
+  font-size: 25px;
+  font-weight: 600;
 }
 
-.middleSection{
- padding: 2rem;
- display: flex;
- flex-direction: column;
- gap: 2rem;
+.middleSection {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.middleSection_1{
-  display:flex;
+.middleSection_1 {
+  display: flex;
   justify-content: center;
   align-items: center;
- }
-
-.skillup{
-   margin: 0;
-   font-weight: 400;
-   line-height: 1.5;
-   font-weight: 700;
-   font-size: 2rem;
-   display: inline;
-   margin-top: 1rem;
 }
 
-.LandpageMainText{
-   line-height: 2rem;
- display:inline; 
- padding:0 0.5rem;
- font-size:20px;
+.skillup {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 2rem;
+  display: inline;
+  margin-top: 1rem;
 }
 
-.service_1{
-   display:flex;
+.LandpageMainText {
+  line-height: 2rem;
+  display: inline;
+  padding: 0 0.5rem;
+  font-size: 20px;
+}
+
+.service_1 {
+  display: flex;
   flex-wrap: wrap;
-  flex:0.7;
+  flex: 0.7;
 }
 
-.service1_text{
-    flex-direction: column;
-    display :flex;
+.service1_text {
+  flex-direction: column;
+  display: flex;
   flex-wrap: wrap;
-  flex:1;
-    font-size: 22px;
-    justify-content: center;
- }
-
-
- .serviceImg{
-   width: 400px;
-   height:400px;
-    padding: 20px 20px;
-   align-self: center;
-   margin:0 auto;
- }
-
-
- .service1_text_head
- {
-   padding:0 4rem;
- }
- .landingText{
-    font-size: 20px;
-    padding:0 4rem;
-    line-height: 1.8rem;
-
- }
-
-.landpageTitle{
-   padding:3px; 
-   font-family:"Raleway"; 
-   line-height:1; 
-   font-weight:700; 
-   color:rgb(247 118 32 / 83%);
-   font-size:450%;
+  flex: 1;
+  font-size: 22px;
+  justify-content: center;
 }
 
+.serviceImg {
+  width: 400px;
+  height: 400px;
+  padding: 20px 20px;
+  align-self: center;
+  margin: 0 auto;
+}
 
+.service1_text_head {
+  padding: 0 4rem;
+}
+.landingText {
+  font-size: 20px;
+  padding: 0 4rem;
+  line-height: 1.8rem;
+}
 
- @media screen and (max-width:1050px) {
-   .mainContainer{
-      width: 100%;
-      /* background-image: url("../SVG/CloudyBG.svg"); */
-      background-repeat:repeat-x ;
-      }
+.landpageTitle {
+  padding: 3px;
+  font-family: "Raleway";
+  line-height: 1;
+  font-weight: 700;
+  color: rgb(247 118 32 / 83%);
+  font-size: 450%;
+}
 
-    #Left
-    {
-       flex: 0.6;
-    }
-    #Right{
-      flex: 0.4;
-    }  
+@media screen and (max-width: 1050px) {
+  .mainContainer {
+    width: 100%;
+    /* background-image: url("../SVG/CloudyBG.svg"); */
+    background-repeat: repeat-x;
+  }
 
-    .superman{
-      width: 350px;
-      height: 495px;
-    }
- }
-
- @media screen and (max-width:950px) {
-   .landpageTitle{
-      font-size:350%;
-   } 
-   .mainContainer{
-      height: 100vh;
-   }
-   .middleSection{
-      padding-bottom: 4rem;
-      gap: 2.5rem;
-   }
-   #Left{
+  #Left {
     flex: 0.6;
-   } 
-      #Right{
-      flex: 0.4;
-      justify-content: end;
-    } 
-
-    .superman{
-      width: 350px;
-      height: 495px;
-    }
-    .Logo{
-       padding-left: 10px;
-    }
-
-    .middle{
-       flex: 2;
-    }
-
-    .skillup{
-       font-size: 1.5rem;
-    }
-
-    .middleSection{
-       padding: 0.5rem 0.5rem 3rem 0.5rem;
-    }
-    .service1_text_head{
-      font-size: 35px;
-      padding: 0 1rem 0 1rem;
-    }
-    
-    .landingText{
-       padding: 0 1rem 0 1rem;
-       font-size: 18px;
- }
- }
-
- @media screen and (max-width:750px) {
-  #Right{
-   flex:0.35;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-  } 
-  .superman{
-     width: 250px;
-     height: 450px;
+  }
+  #Right {
+    flex: 0.4;
   }
 
-  .landingText{
-   font-size: 16px;
+  .superman {
+    width: 350px;
+    height: 495px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .landpageTitle {
+    font-size: 350%;
+  }
+  .mainContainer {
+    height: 100vh;
+  }
+  .middleSection {
+    padding-bottom: 4rem;
+    gap: 2.5rem;
+  }
+  #Left {
+    flex: 0.6;
+  }
+  #Right {
+    flex: 0.4;
+    justify-content: flex-end;
   }
 
-  .landpageTitle{
-   font-size:300%;
+  .superman {
+    width: 350px;
+    height: 495px;
+  }
+  .Logo {
+    padding-left: 10px;
+  }
+
+  .middle {
+    flex: 2;
+  }
+
+  .skillup {
+    font-size: 1.5rem;
+  }
+
+  .middleSection {
+    padding: 0.5rem 0.5rem 3rem 0.5rem;
+  }
+  .service1_text_head {
+    font-size: 35px;
+    padding: 0 1rem 0 1rem;
+  }
+
+  .landingText {
+    padding: 0 1rem 0 1rem;
+    font-size: 18px;
+  }
 }
 
-.serviceImg{
-   width: 300px;
-   height:300px;
-   padding: 20px 20px;
-   align-self: center;
-   margin:0 auto;
- }
+@media screen and (max-width: 750px) {
+  #Right {
+    flex: 0.35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .superman {
+    width: 250px;
+    height: 450px;
+  }
 
-  .skillup{
-   font-size: 1.5rem;
-}
+  .landingText {
+    font-size: 16px;
+  }
 
-  .Quote{
+  .landpageTitle {
+    font-size: 300%;
+  }
+
+  .serviceImg {
+    width: 300px;
+    height: 300px;
+    padding: 20px 20px;
+    align-self: center;
+    margin: 0 auto;
+  }
+
+  .skillup {
+    font-size: 1.5rem;
+  }
+
+  .Quote {
     display: none;
   }
 }
 
-@media screen and (max-width:650px) {
-   #Right{
+@media screen and (max-width: 650px) {
+  #Right {
     display: flex;
     justify-content: center;
     align-items: center;
-   }
-   .superman{
-      width: 200px;
-      height:375px;
-   }
+  }
+  .superman {
+    width: 200px;
+    height: 375px;
+  }
 
-   .service1_text_head{
-      font-size:28px;
-    }
+  .service1_text_head {
+    font-size: 28px;
+  }
 }
 
-
-@media screen and (max-width:550px) {
-   .superman{
+@media screen and (max-width: 550px) {
+  .superman {
     width: 250px;
     height: 250px;
-   } 
+  }
 
-   #Right{
-    align-items:end;
-   }
+  #Right {
+    align-items: end;
+  }
 
-   #Left{
-      padding: 2rem 1rem;
-   }
+  #Left {
+    padding: 2rem 1rem;
+  }
 
-   .mainContainer{
-      display: flex;
-      flex-direction:column;
-      background-image: url("../SVG/CloudyBG.svg");
-   }
+  .mainContainer {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../SVG/CloudyBG.svg");
+  }
 
-   .landingText{
+  .landingText {
     font-size: 16px;
-   }
- 
-   .landpageTitle{
-    font-size:250%;
- }
- 
-   .skillup{
+  }
+
+  .landpageTitle {
+    font-size: 250%;
+  }
+
+  .skillup {
     font-size: 1.3rem;
- }
- 
-   .Quote{
-     display: none;
-   }
+  }
 
- }
-
-@media screen and (max-width:475px) {
-   .landpageTitle{
-      display: flex;
-      justify-content: center;
-      font-size:40px;
-   }
-
-   .superman{
-      width: 250px;
-       height:250px;
-     } 
-
-     .LandpageMainText{
-      font-size:16px;
-     }  
-
-     .middleSection_1{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      flex-direction: column-reverse;
-     }
-
-     .serviceImg{
-     width: 200px;
-     height: 200px;
-     }
-
-     #service2{
-        display: flex;
-        flex-direction: column !important;
-     }
+  .Quote {
+    display: none;
+  }
 }
 
- 
+@media screen and (max-width: 475px) {
+  .landpageTitle {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  .superman {
+    width: 250px;
+    height: 250px;
+  }
+
+  .LandpageMainText {
+    font-size: 16px;
+  }
+
+  .middleSection_1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  .serviceImg {
+    width: 200px;
+    height: 200px;
+  }
+
+  #service2 {
+    display: flex;
+    flex-direction: column !important;
+  }
+}

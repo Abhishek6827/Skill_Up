@@ -2,15 +2,15 @@
   color: blue;
 }
 
-.allSessionsContainer{
+.allSessionsContainer {
   display: flex;
   margin-top: 6rem;
   padding: 1rem;
   gap: 2rem;
 }
+
 .wrapper {
   border: 2px solid black;
-  /* background-color: #e7e7e7; */
   overflow-y: scroll;
   display: flex;
   padding: 0.5rem;
@@ -23,10 +23,8 @@
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.personalSessionwrapper{
+.personalSessionwrapper {
   border: 2px solid black;
-  /* background-color: #e7e7e7; */
-  /* overflow-y: scroll; */
   display: flex;
   padding: 0.5rem;
   border-radius: 8px;
@@ -38,8 +36,9 @@
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.wrapper:hover,.personalSessionwrapper:hover{
-  box-shadow: 8px 8px 0px black ; 
+.wrapper:hover,
+.personalSessionwrapper:hover {
+  box-shadow: 8px 8px 0px black;
   transform: translateY(-5px) translateX(-5px);
 }
 
@@ -47,14 +46,12 @@
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .wrapper {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-
-.skillCategory{
+.skillCategory {
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -65,27 +62,28 @@
   gap: 2rem 5rem;
   grid-template-columns: repeat(2, 1fr);
   margin-bottom: 2rem;
-  /* width: 80%; */
   padding: 20px;
 }
 
-.personalSessionContainer{
+.personalSessionContainer {
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 2rem;
-  padding: 20px; 
+  padding: 20px;
 }
 
 .sessionCourseName {
   font-size: 28px;
   font-weight: 600;
-   text-align: center;
+  text-align: center;
+  margin: 0 0 1rem 0;
 }
 
 .sessionMiddle {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 1rem;
 }
 
 .sessionDuration,
@@ -108,7 +106,6 @@
 .timeSessionWrapper {
   display: flex;
   justify-content: space-between;
-  /* width: 95%; */
   width: fit-content;
   margin-top: 0.5rem;
 }
@@ -116,24 +113,35 @@
 .sessionDescription,
 .sessionDate,
 .sessionStartTime {
-  /* text-align: justify; */
   margin: 0.5rem;
 }
 
 .sessionLink {
   margin: 0.5rem;
   display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sessionLink a {
+  color: blue;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.sessionLink a:hover {
+  text-decoration: underline;
 }
 
 .sessionBottom {
   display: flex;
-  /* flex-direction: column; */
   width: 55%;
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
   color: #545454;
   justify-content: space-between;
+  align-items: center;
 }
 
 .volunteerPic {
@@ -143,37 +151,86 @@
   border: 1px solid orange;
 }
 
-.emptyPersonalSession{
+.emptyPersonalSession {
   position: absolute;
   left: 50%;
-  right:50%;
+  right: 50%;
   top: 60%;
-  bottom:40%;
+  bottom: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateX(-50%);
 }
 
-.emptyMessage{
+.emptyMessage {
   padding: 30px 50px;
-  font-size:1.5rem ;
+  font-size: 1.5rem;
   text-align: center;
   margin-top: 20px;
-  border:2px solid grey;
-  border-radius:10px;
-  width:500px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  width: 500px;
 }
 
+/* Additional styles for consistency */
+.Categories {
+  padding: 10px 20px;
+  background-color: #e7e7e7;
+  margin: 0.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-@media screen and (max-width:1200px) {
+.Categories:hover {
+  background-color: #d0d0d0;
+}
+
+.categoryShower {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+
+.categoryTitle {
+  display: flex;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
   .sessionContainer {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(1, 1fr);
     margin: 0 auto 2rem auto;
-    /* width: 80%; */
     padding: 20px;
+  }
 
+  .allSessionsContainer {
+    flex-direction: column;
+  }
+
+  .skillCategory {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .categoryShower {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .emptyMessage {
+    width: 90%;
+    max-width: 400px;
   }
 }

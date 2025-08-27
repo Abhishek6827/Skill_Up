@@ -1,11 +1,8 @@
-import React,{useState,createContext} from "react";
+import React, { createContext, useState } from "react";
 import "./App.css";
-
-import {app} from "./firebase";
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./Component/SignUp";
 import ForgetPassword from "./Component/ForgetPassword";
-import { AuthProvider } from "./AuthContext";
 import AboutUs from "./Component/AboutUs/AboutUs";
 import HomePage from "./Component/HomePage";
 import Profile from "./Component/Profile/Profile";
@@ -22,103 +19,64 @@ import PersonalDetailForm from "./Component/PersonalForms/PersonalDetailForm";
 import EducationForm from "./Component/EducationForm/EducationForm";
 import DocumentForm from "./Component/DocumentForm/DocumentForm";
 import SingleBlog from "./Component/Blogs/SingleBlog";
-
 import { ThemeProvider, createTheme } from "@mui/material";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-
-
-//const auth = getAuth(app);
-
-
-const theme = createTheme({
-  typography:{
-    fontFamily:["Montserrat","sans-serif"].join(","),
-  }
-});
+import { AuthProvider } from "./AuthContext";
 
 export const singleBlog = createContext();
 
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+  },
+});
 
-const App = () => {
-  
+function App() {
   const [singleBlogDetail, setSingleBlogDetail] = useState({
-    title:null,
-    text:null,
-    image:null
-  })
-
-
+    title: null,
+    text: null,
+    image: null,
+  });
 
   const [showPersonaldetailForm, setshowPersonaldetailForm] = useState(false);
   const [showEducationForm, setshowEducationForm] = useState(false);
- 
+
   return (
-    // <div className="=App">
-    //   <h1>Firebase</h1>
-    //   <button onClick={putData}>Put Data</button>
-    // </div>
-
     <ThemeProvider theme={theme}>
-      <singleBlog.Provider value={{singleBlogDetail,setSingleBlogDetail}}>
-      <FormContext.Provider value={{
-        showPersonaldetailForm,
-        showEducationForm, 
-       setshowPersonaldetailForm,
-       setshowEducationForm
-      }}>
-
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/forget-password" element={<ForgetPassword />} />
-          <Route path="/Homepage" element={<HomePage />} />
-          <Route
-            path="/Aboutus"
-            element={
-              <AboutUs />
-            }
-            />
-          <Route
-            path="/Profile"
-            element={
-              <Profile />
-            }
-          />
-          <Route
-            path="/EditProfile"
-            element={
-              <EditProfile />
-            }
-            />
-          <Route path="/Homepage/article" element={<Article />} />
-          <Route path="/confirm" element={<ConfirmPage />} />
-          <Route
-            path="/blogs"
-            element={
-              <Blogs />
-            }
-            />
-
-            <Route path="/videos" element={<Videos/>}/>
- 
-           <Route path="singleBlog" element={<SingleBlog/>}  />
-
-          <Route path="/Homepage/videos" element={<ConfirmPage />} />
-
-          <Route path="/CreateSession" element={<CreateSession />} />
-        
-          <Route path="/liveSessions" element={<LiveSession />} />
-          <Route path="/personalForm" element={<PersonalDetailForm/>} />
-          <Route path="/educationForm" element={<EducationForm/>} />
-          <Route path="/documentForm" element={<DocumentForm/>} />
-
-        </Routes>
+        <singleBlog.Provider value={{ singleBlogDetail, setSingleBlogDetail }}>
+          <FormContext.Provider
+            value={{
+              showPersonaldetailForm,
+              showEducationForm,
+              setshowPersonaldetailForm,
+              setshowEducationForm,
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/forget-password" element={<ForgetPassword />} />
+              <Route path="/Homepage" element={<HomePage />} />
+              <Route path="/Aboutus" element={<AboutUs />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/EditProfile" element={<EditProfile />} />
+              <Route path="/Homepage/article" element={<Article />} />
+              <Route path="/confirm" element={<ConfirmPage />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/videos" element={<Videos />} />
+              <Route path="/singleBlog" element={<SingleBlog />} />
+              <Route path="/Homepage/videos" element={<ConfirmPage />} />
+              <Route path="/CreateSession" element={<CreateSession />} />
+              <Route path="/liveSessions" element={<LiveSession />} />
+              <Route path="/personalForm" element={<PersonalDetailForm />} />
+              <Route path="/educationForm" element={<EducationForm />} />
+              <Route path="/documentForm" element={<DocumentForm />} />
+            </Routes>
+          </FormContext.Provider>
+        </singleBlog.Provider>
       </AuthProvider>
-  </FormContext.Provider>
-  </singleBlog.Provider>
     </ThemeProvider>
   );
-};
+}
 
 export default App;
