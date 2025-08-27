@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, Suspense } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./Component/SignUp";
@@ -21,6 +21,7 @@ import DocumentForm from "./Component/DocumentForm/DocumentForm";
 import SingleBlog from "./Component/Blogs/SingleBlog";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { AuthProvider } from "./AuthContext";
+import Loader from "./Component/Loader/CircularProgressWithLabel";
 
 export const singleBlog = createContext();
 
@@ -29,6 +30,10 @@ const theme = createTheme({
     fontFamily: ["Montserrat", "sans-serif"].join(","),
   },
 });
+
+// Lazy load components to improve performance
+const LazyBlogs = React.lazy(() => import("./Component/Blogs/Blogs"));
+const LazySingleBlog = React.lazy(() => import("./Component/Blogs/SingleBlog"));
 
 function App() {
   const [singleBlogDetail, setSingleBlogDetail] = useState({
@@ -62,9 +67,23 @@ function App() {
               <Route path="/EditProfile" element={<EditProfile />} />
               <Route path="/Homepage/article" element={<Article />} />
               <Route path="/confirm" element={<ConfirmPage />} />
-              <Route path="/blogs" element={<Blogs />} />
+              <Route
+                path="/blogs"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <LazyBlogs />
+                  </Suspense>
+                }
+              />
               <Route path="/videos" element={<Videos />} />
-              <Route path="/singleBlog" element={<SingleBlog />} />
+              <Route
+                path="/singleBlog"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <LazySingleBlog />
+                  </Suspense>
+                }
+              />
               <Route path="/Homepage/videos" element={<ConfirmPage />} />
               <Route path="/CreateSession" element={<CreateSession />} />
               <Route path="/liveSessions" element={<LiveSession />} />

@@ -9,8 +9,6 @@ import { Box, Typography } from "@mui/material";
 const SingleBlog = () => {
   const { singleBlogDetail } = useContext(singleBlog);
 
-  console.log(singleBlogDetail);
-
   if (!singleBlogDetail || !singleBlogDetail.title) {
     return (
       <>
@@ -102,16 +100,27 @@ const SingleBlog = () => {
               }
               alt={singleBlogDetail.title}
               className="singleBlogImage"
+              onError={(e) => {
+                e.target.src = "https://picsum.photos/800/400?random=1";
+              }}
             />
           </div>
 
           <div className="singleBlogContent">
             <div className="singleBlogText">
-              {singleBlogDetail.text.split("\n\n").map((paragraph, index) => (
-                <p key={index} className="blogParagraph">
-                  {paragraph}
+              {singleBlogDetail.text &&
+              typeof singleBlogDetail.text === "string" ? (
+                singleBlogDetail.text.split("\n\n").map((paragraph, index) => (
+                  <p key={index} className="blogParagraph">
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p className="blogParagraph">
+                  {singleBlogDetail.text ||
+                    "No content available for this blog."}
                 </p>
-              ))}
+              )}
             </div>
 
             <div className="blogFooter">

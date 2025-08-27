@@ -8,15 +8,12 @@ import Navbar from "./Navbar/Navbar";
 import BottomNavbar from "./Navbar/BottomNavbar/BottomNavbar";
 import { singleBlog } from "../App";
 import { Fade } from "react-awesome-reveal";
+import { getCategoryImage, ImageWithFallback } from "../utils/imageUtils";
 
 // Safe date conversion utility
 const safeToDate = (dateValue) => {
   if (!dateValue) return new Date();
-
-  if (dateValue instanceof Date) {
-    return dateValue;
-  }
-
+  if (dateValue instanceof Date) return dateValue;
   if (dateValue && typeof dateValue.toDate === "function") {
     try {
       return dateValue.toDate();
@@ -25,52 +22,11 @@ const safeToDate = (dateValue) => {
       return new Date();
     }
   }
-
   if (typeof dateValue === "string" || typeof dateValue === "number") {
     const parsed = new Date(dateValue);
     return isNaN(parsed.getTime()) ? new Date() : parsed;
   }
-
   return new Date();
-};
-
-// Get category-specific images
-const getCategoryImage = (category, index = 0) => {
-  const imageUrls = {
-    Cooking: [
-      "https://cdn.pixabay.com/photo/2017/05/11/19/44/fresh-fruits-2305192_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg",
-    ],
-    "Computer science": [
-      "https://cdn.pixabay.com/photo/2016/11/30/20/58/programming-1873854_1280.png",
-      "https://cdn.pixabay.com/photo/2015/05/31/15/14/woman-792162_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg",
-    ],
-    Music: [
-      "https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_1280.jpg",
-      "https://cdn.pixabay.com/photo/2015/05/07/11/02/guitar-756326_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/22/19/15/hand-1850120_1280.jpg",
-    ],
-    Dance: [
-      "https://cdn.pixabay.com/photo/2016/10/21/23/09/dancer-1758887_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1869761_1280.jpg",
-    ],
-    Photography: [
-      "https://cdn.pixabay.com/photo/2016/01/09/18/27/camera-1130731_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/02/12/10/29/christmas-2059698_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/01/20/13/05/man-1151304_1280.jpg",
-    ],
-    "Art & Craft": [
-      "https://cdn.pixabay.com/photo/2017/05/25/15/08/art-2343414_1280.jpg",
-      "https://cdn.pixabay.com/photo/2018/03/30/15/11/art-3275154_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/09/03/21/45/watercolor-2713287_1280.jpg",
-    ],
-  };
-
-  const categoryImages = imageUrls[category] || imageUrls["Art & Craft"];
-  return categoryImages[index % categoryImages.length];
 };
 
 // Get category-specific video links
@@ -362,13 +318,11 @@ const HomePage = () => {
         <Fade bottom>
           <div className="mainBlogWrapper">
             <div className="mainBlogImage">
-              <img
-                src={mainBlog.pic || "/placeholder.svg"}
+              <ImageWithFallback
+                src={mainBlog.pic}
                 alt="BlogImage"
                 className="blogImage"
-                onError={(e) => {
-                  e.target.src = getCategoryImage("Cooking", 0);
-                }}
+                fallbackSrc={getCategoryImage("Cooking", 0)}
               />
             </div>
             <div className="mainBlogTextSection">
@@ -398,16 +352,14 @@ const HomePage = () => {
                 <div key={item.id || index} className="blogContainer">
                   <div className="blogWrapper">
                     <div className="blogImageWrapper">
-                      <img
+                      <ImageWithFallback
                         className="blogImg"
-                        src={item.image || "/placeholder.svg"}
+                        src={item.image}
                         alt="article"
-                        onError={(e) => {
-                          e.target.src = getCategoryImage(
-                            item.Category || "Art & Craft",
-                            index
-                          );
-                        }}
+                        fallbackSrc={getCategoryImage(
+                          item.Category || "Art & Craft",
+                          index
+                        )}
                       />
                     </div>
                     <div className="blogTextWrapper">
@@ -471,13 +423,11 @@ const HomePage = () => {
         <Fade bottom>
           <div className="mainBlogWrapper">
             <div className="mainBlogImage">
-              <img
-                src={mainVideo.piclink || "/placeholder.svg"}
+              <ImageWithFallback
+                src={mainVideo.piclink}
                 alt="VideoImage"
                 className="blogImage"
-                onError={(e) => {
-                  e.target.src = getCategoryImage("Music", 0);
-                }}
+                fallbackSrc={getCategoryImage("Music", 0)}
               />
             </div>
             <div className="mainVideoTextSection">
@@ -500,16 +450,14 @@ const HomePage = () => {
                 <div key={item.id || index} className="blogContainer">
                   <div className="blogWrapper">
                     <div className="blogImageWrapper">
-                      <img
+                      <ImageWithFallback
                         className="blogImg"
-                        src={item.piclink || "/placeholder.svg"}
+                        src={item.piclink}
                         alt="video"
-                        onError={(e) => {
-                          e.target.src = getCategoryImage(
-                            item.Category || "Art & Craft",
-                            index
-                          );
-                        }}
+                        fallbackSrc={getCategoryImage(
+                          item.Category || "Art & Craft",
+                          index
+                        )}
                       />
                     </div>
                     <div className="blogTextWrapper">
