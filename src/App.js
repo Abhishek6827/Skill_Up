@@ -11,14 +11,12 @@ import LandingPage from "./Component/LandPage/LandingPage";
 import CreateSession from "./Component/CreateSession/CreateSession";
 import Article from "./Component/Article/Article";
 import ConfirmPage from "./Component/ConfirmPage";
-import Blogs from "./Component/Blogs/Blogs";
 import Videos from "./Component/Videos/Videos";
 import LiveSession from "./Component/LiveSessions/LiveSession";
 import { FormContext } from "./Component/Context/DetailFormContext.js";
 import PersonalDetailForm from "./Component/PersonalForms/PersonalDetailForm";
 import EducationForm from "./Component/EducationForm/EducationForm";
 import DocumentForm from "./Component/DocumentForm/DocumentForm";
-import SingleBlog from "./Component/Blogs/SingleBlog";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { AuthProvider } from "./AuthContext";
 import Loader from "./Component/Loader/CircularProgressWithLabel";
@@ -32,8 +30,8 @@ const theme = createTheme({
 });
 
 // Lazy load components to improve performance
-const LazyBlogs = React.lazy(() => import("./Component/Blogs/Blogs"));
-const LazySingleBlog = React.lazy(() => import("./Component/Blogs/SingleBlog"));
+const Blogs = React.lazy(() => import("./Component/Blogs/Blogs"));
+const SingleBlog = React.lazy(() => import("./Component/Blogs/SingleBlog"));
 
 function App() {
   const [singleBlogDetail, setSingleBlogDetail] = useState({
@@ -71,7 +69,7 @@ function App() {
                 path="/blogs"
                 element={
                   <Suspense fallback={<Loader />}>
-                    <LazyBlogs />
+                    <Blogs />
                   </Suspense>
                 }
               />
@@ -80,7 +78,7 @@ function App() {
                 path="/singleBlog"
                 element={
                   <Suspense fallback={<Loader />}>
-                    <LazySingleBlog />
+                    <SingleBlog />
                   </Suspense>
                 }
               />
