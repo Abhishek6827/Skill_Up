@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import "./AboutUs.css";
 import Navbar from "../Navbar/Navbar";
 import emailjs from "@emailjs/browser";
-import Mypic from "../SVG/paras.png";
+import Mypic from "../SVG/Abhishek.JPEG";
 import { ToastContainer, toast } from "react-toastify";
 const AboutUs = () => {
   const form = useRef();
