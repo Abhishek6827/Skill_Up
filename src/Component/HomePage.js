@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Typography } from "@mui/material";
+import { Typography, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import "./Homepage.css";
@@ -76,6 +76,7 @@ const HomePage = () => {
   const [mainBlog, setMainBlog] = useState({});
   const [mainVideo, setMainVideo] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -88,6 +89,7 @@ const HomePage = () => {
         ]);
       } catch (error) {
         console.error("Error loading data:", error);
+        setError("Failed to load data. Please check your connection.");
       } finally {
         setLoading(false);
       }
@@ -108,7 +110,7 @@ const HomePage = () => {
       const getData = [];
       const Snapshot = await getDocs(collection(db, "data"));
 
-      if (Snapshot.size === 0) {
+      if (Snapshot.empty) {
         // Create sample blog data if none exists
         const sampleCategories = ["Cooking", "Computer science", "Music"];
         sampleCategories.forEach((category, catIndex) => {
@@ -136,6 +138,7 @@ const HomePage = () => {
       setArticle(getData);
     } catch (error) {
       console.error("Error fetching articles:", error);
+      setError("Failed to load articles. Please try again later.");
     }
   };
 
@@ -144,7 +147,7 @@ const HomePage = () => {
       const getVideo = [];
       const Snapshot = await getDocs(collection(db, "video"));
 
-      if (Snapshot.size === 0) {
+      if (Snapshot.empty) {
         // Create sample video data if none exists
         const sampleCategories = ["Music", "Dance", "Photography"];
         sampleCategories.forEach((category, catIndex) => {
@@ -176,6 +179,7 @@ const HomePage = () => {
       setVideos(getVideo);
     } catch (error) {
       console.error("Error fetching videos:", error);
+      setError("Failed to load videos. Please try again later.");
     }
   };
 
@@ -296,6 +300,12 @@ const HomePage = () => {
   return (
     <div>
       <Navbar />
+
+      {error && (
+        <Alert severity="error" sx={{ mt: 8, mb: 2, mx: 2 }}>
+          {error}
+        </Alert>
+      )}
 
       {/* BLOGS SECTION */}
       <Typography

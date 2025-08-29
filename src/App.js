@@ -1,6 +1,6 @@
 import React, { createContext, useState, Suspense } from "react";
 import "./App.css";
-import { Routes, Route, HashRouter } from "react-router-dom"; // Changed to HashRouter
+import { Routes, Route } from "react-router-dom"; // Removed HashRouter import
 import SignUp from "./Component/SignUp";
 import ForgetPassword from "./Component/ForgetPassword";
 import AboutUs from "./Component/AboutUs/AboutUs";
@@ -55,44 +55,41 @@ function App() {
               setshowEducationForm,
             }}
           >
-            <HashRouter>
-              {" "}
-              {/* Wrap everything with HashRouter */}
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/signUp" element={<SignUp />} />
-                <Route path="/forget-password" element={<ForgetPassword />} />
-                <Route path="/Homepage" element={<HomePage />} />
-                <Route path="/Aboutus" element={<AboutUs />} />
-                <Route path="/Profile" element={<Profile />} />
-                <Route path="/EditProfile" element={<EditProfile />} />
-                <Route path="/Homepage/article" element={<Article />} />
-                <Route path="/confirm" element={<ConfirmPage />} />
-                <Route
-                  path="/blogs"
-                  element={
-                    <Suspense fallback={<Loader />}>
-                      <Blogs />
-                    </Suspense>
-                  }
-                />
-                <Route path="/videos" element={<Videos />} />
-                <Route
-                  path="/singleBlog"
-                  element={
-                    <Suspense fallback={<Loader />}>
-                      <SingleBlog />
-                    </Suspense>
-                  }
-                />
-                <Route path="/Homepage/videos" element={<ConfirmPage />} />
-                <Route path="/CreateSession" element={<CreateSession />} />
-                <Route path="/liveSessions" element={<LiveSession />} />
-                <Route path="/personalForm" element={<PersonalDetailForm />} />
-                <Route path="/educationForm" element={<EducationForm />} />
-                <Route path="/documentForm" element={<DocumentForm />} />
-              </Routes>
-            </HashRouter>
+            {/* Removed HashRouter wrapper */}
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/forget-password" element={<ForgetPassword />} />
+              <Route path="/Homepage" element={<HomePage />} />
+              <Route path="/Aboutus" element={<AboutUs />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/EditProfile" element={<EditProfile />} />
+              <Route path="/Homepage/article" element={<Article />} />
+              <Route path="/confirm" element={<ConfirmPage />} />
+              <Route
+                path="/blogs"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Blogs />
+                  </Suspense>
+                }
+              />
+              <Route path="/videos" element={<Videos />} />
+              <Route
+                path="/singleBlog"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <SingleBlog />
+                  </Suspense>
+                }
+              />
+              <Route path="/Homepage/videos" element={<ConfirmPage />} />
+              <Route path="/CreateSession" element={<CreateSession />} />
+              <Route path="/liveSessions" element={<LiveSession />} />
+              <Route path="/personalForm" element={<PersonalDetailForm />} />
+              <Route path="/educationForm" element={<EducationForm />} />
+              <Route path="/documentForm" element={<DocumentForm />} />
+            </Routes>
           </FormContext.Provider>
         </singleBlog.Provider>
       </AuthProvider>

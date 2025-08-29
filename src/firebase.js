@@ -1,3 +1,4 @@
+// firebase.js
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -8,26 +9,14 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey:
-    process.env.REACT_APP_FIREBASE_API_KEY ||
-    "AIzaSyBA9jpAbf3Y1ROdXEhUzwZGw__07kX9gL8",
-  authDomain:
-    process.env.REACT_APP_FIREBASE_AUTH_DOMAIN ||
-    "skill-up-c45ee.firebaseapp.com",
-  databaseURL:
-    process.env.REACT_APP_FIREBASE_DATABASE_URL ||
-    "https://skill-up-c45ee-default-rtdb.firebaseio.com",
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "skill-up-c45ee",
-  storageBucket:
-    process.env.REACT_APP_FIREBASE_STORAGE_BUCKET ||
-    "skill-up-c45ee.appspot.com",
-  messagingSenderId:
-    process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || "782722579720",
-  appId:
-    process.env.REACT_APP_FIREBASE_APP_ID ||
-    "1:782722579720:web:4b0de277b01f8faea980bd",
-  measurementId:
-    process.env.REACT_APP_FIREBASE_MEASUREMENT_ID || "G-C0Q73VZ7SH",
+  apiKey: "AIzaSyCJGFLDv9PAWd0ANriJNpSVtef8F7uYUio",
+  authDomain: "skillup-27da9.firebaseapp.com",
+  databaseURL: "https://skillup-27da9-default-rtdb.firebaseio.com",
+  projectId: "skillup-27da9",
+  storageBucket: "skillup-27da9.firebasestorage.app",
+  messagingSenderId: "758674590842",
+  appId: "1:758674590842:web:d1ebd4d6f3e3f6eceabfc3",
+  measurementId: "G-ZBN8TN9SKE",
 };
 
 const app = initializeApp(firebaseConfig);

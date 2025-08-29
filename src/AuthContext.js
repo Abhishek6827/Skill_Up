@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-// import { collection, getDocs,doc, updateDoc, addDoc,deleteDoc,setDoc } from 'firebase/firestore'
 import {
   onAuthStateChanged,
   sendPasswordResetEmail,
@@ -8,9 +7,10 @@ import {
   sendEmailVerification,
   sendSignInLinkToEmail,
   signInWithEmailLink,
-  deleteUser
+  deleteUser,
+  isSignInWithEmailLink,
 } from "firebase/auth";
-import {auth,GoogleAuth,FacebookAuth} from './firebase'
+import { auth, GoogleAuth, FacebookAuth } from "./firebase";
 
 export const AuthContext = createContext();
 
@@ -20,52 +20,66 @@ export function useAuth() {
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
-  const [loading,setLoading] = useState(true);
-  let userType;
+  const [loading, setLoading] = useState(true);
 
-  function Logout(){
+  function Logout() {
     return signOut(auth);
   }
 
-  function forgotPassword(auth,email){
-    return sendPasswordResetEmail(auth,email);
+  function forgotPassword(email) {
+    return sendPasswordResetEmail(auth, email);
   }
 
-  function signInWithGoogle(){
-   return signInWithPopup(auth,GoogleAuth);
+  function signInWithGoogle() {
+    return signInWithPopup(auth, GoogleAuth);
   }
 
-  function signInWithFacebook(){
-    return signInWithPopup(auth,FacebookAuth);
-   }
+  function signInWithFacebook() {
+    return signInWithPopup(auth, FacebookAuth);
+  }
 
-   function EmailVerification(){
+  function EmailVerification() {
     return sendEmailVerification(auth.currentUser);
-   }
-
-  function  sendEmailLink(auth,email){
-    return sendSignInLinkToEmail(auth,email,{
-      url:"http://localhost:3000/confirm",
-      handleCodeInApp:true,
-    })
   }
 
-  function deleteUsers(){
-      return deleteUser(auth.currentUser);
+  function sendEmailLink(email) {
+    return sendSignInLinkToEmail(auth, email, {
+      url: window.location.origin + "/confirm",
+      handleCodeInApp: true,
+    });
   }
 
-  function signInWithEmail(auth,email){
-    return signInWithEmailLink(auth,email)
+  function deleteUsers() {
+    return deleteUser(auth.currentUser);
   }
 
+  function signInWithEmail(email, emailLink) {
+    return signInWithEmailLink(auth, email, emailLink);
+  }
 
-useEffect(()=>{
-  const unsusbcribe =onAuthStateChanged(auth, (user) => {
-    setCurrentUser(user);
-    setLoading(false);
-     }) 
-  return unsusbcribe();
-},[])
+  function checkSignInWithEmailLink(emailLink) {
+    return isSignInWithEmailLink(auth, emailLink);
+  }
+
+  function getEmailForSignIn() {
+    return localStorage.getItem("emailForSignIn");
+  }
+
+  function saveEmailForSignIn(email) {
+    localStorage.setItem("emailForSignIn", email);
+  }
+
+  function clearEmailForSignIn() {
+    localStorage.removeItem("emailForSignIn");
+  }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
   const value = {
     currentUser,
@@ -76,13 +90,17 @@ useEffect(()=>{
     EmailVerification,
     sendEmailLink,
     signInWithEmail,
+    checkSignInWithEmailLink,
+    getEmailForSignIn,
+    saveEmailForSignIn,
+    clearEmailForSignIn,
     deleteUsers,
     loading,
-    userType,
   };
+
   return (
-      <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={value}>
       {!loading && children}
-      </AuthContext.Provider>
+    </AuthContext.Provider>
   );
 };
