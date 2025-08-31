@@ -312,7 +312,7 @@ const Blogs = () => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [Category]);
 
   useEffect(() => {
     getArticles();
