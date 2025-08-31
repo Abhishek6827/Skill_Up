@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/Skill_Up/static/css/main.2c138f5c.css",
-    "main.js": "/Skill_Up/static/js/main.7308f873.js",
+    "main.js": "/Skill_Up/static/js/main.698eaec4.js",
     "static/css/490.97bb580a.chunk.css": "/Skill_Up/static/css/490.97bb580a.chunk.css",
-    "static/js/490.95c4ad7c.chunk.js": "/Skill_Up/static/js/490.95c4ad7c.chunk.js",
+    "static/js/490.355f12e6.chunk.js": "/Skill_Up/static/js/490.355f12e6.chunk.js",
     "static/css/109.de0f09e0.chunk.css": "/Skill_Up/static/css/109.de0f09e0.chunk.css",
     "static/js/109.06b94cc4.chunk.js": "/Skill_Up/static/js/109.06b94cc4.chunk.js",
     "static/js/355.0d38b369.chunk.js": "/Skill_Up/static/js/355.0d38b369.chunk.js",
@@ -24,15 +24,15 @@
     "static/media/CloudBackground.svg": "/Skill_Up/static/media/CloudBackground.9842a6070e39547a5f06.svg",
     "static/media/CloudyBG.svg": "/Skill_Up/static/media/CloudyBG.6a42ea4f1063916c3dc0.svg",
     "main.2c138f5c.css.map": "/Skill_Up/static/css/main.2c138f5c.css.map",
-    "main.7308f873.js.map": "/Skill_Up/static/js/main.7308f873.js.map",
+    "main.698eaec4.js.map": "/Skill_Up/static/js/main.698eaec4.js.map",
     "490.97bb580a.chunk.css.map": "/Skill_Up/static/css/490.97bb580a.chunk.css.map",
-    "490.95c4ad7c.chunk.js.map": "/Skill_Up/static/js/490.95c4ad7c.chunk.js.map",
+    "490.355f12e6.chunk.js.map": "/Skill_Up/static/js/490.355f12e6.chunk.js.map",
     "109.de0f09e0.chunk.css.map": "/Skill_Up/static/css/109.de0f09e0.chunk.css.map",
     "109.06b94cc4.chunk.js.map": "/Skill_Up/static/js/109.06b94cc4.chunk.js.map",
     "355.0d38b369.chunk.js.map": "/Skill_Up/static/js/355.0d38b369.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2c138f5c.css",
-    "static/js/main.7308f873.js"
+    "static/js/main.698eaec4.js"
   ]
 }

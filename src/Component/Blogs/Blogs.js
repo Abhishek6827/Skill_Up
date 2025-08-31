@@ -258,6 +258,15 @@ const Blogs = () => {
   };
 
   const getArticles = useCallback(async () => {
+    const Category = [
+      "All",
+      "Cooking",
+      "Computer science",
+      "Music",
+      "Dance",
+      "Photography",
+      "Art & Craft",
+    ];
     try {
       setLoading(true);
       const getData = [];
@@ -312,7 +321,7 @@ const Blogs = () => {
     } finally {
       setLoading(false);
     }
-  }, [Category]);
+  }, []);
 
   useEffect(() => {
     getArticles();
