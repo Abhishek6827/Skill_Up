@@ -1,0 +1,367 @@
+/* LiveSession.css - With default navbar and enhanced sessions */
+
+.liveSessionsContainer {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 70px; /* Adjust based on your navbar height */
+}
+
+.skillCategory {
+  width: 250px;
+  position: fixed;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  z-index: 100;
+  left: 0;
+  top: 70px; /* Position below navbar */
+}
+
+.sessionContainer {
+  flex: 1;
+  margin-left: 250px; /* Match sidebar width */
+  padding: 30px;
+  position: relative;
+}
+
+/* Background box for all sessions */
+.sessionsBackground {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.sessionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  width: 100%;
+  position: relative;
+  z-index: 2; /* Ensure sessions appear above the background */
+}
+
+.sessionCard {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #eaeaea;
+}
+
+.sessionCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.sessionHeader {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+}
+
+.sessionCourseName {
+  margin: 0 0 12px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.sessionMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sessionCategory {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+}
+
+.sessionDuration {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sessionDetails {
+  padding: 20px;
+}
+
+.sessionDateTime {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.sessionDate,
+.sessionStartTime {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.sessionDescription {
+  margin-bottom: 15px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.sessionDescription strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.sessionDescription p {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.sessionLink {
+  margin-bottom: 15px;
+}
+
+.sessionLink strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+  background-color: #f0f4ff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #dde5ff;
+}
+
+.sessionLinkText {
+  flex: 1;
+  color: #2563eb;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 12px;
+  font-size: 0.85rem;
+}
+
+.sessionLinkText:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+
+.copyIcon {
+  cursor: pointer;
+  color: #64748b;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.copyIcon:hover {
+  color: #2563eb;
+}
+
+.sessionInstructor {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.instructorInfo {
+  margin-left: 12px;
+}
+
+.instructorName {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+.instructorEmail {
+  margin: 4px 0 0 0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.emptyPersonalSession {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 30px;
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+.emptyIllustration {
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.emptyMessage {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.categoryTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.categoryShower {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Categories {
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+.Categories:hover {
+  background-color: #e0e0e0;
+  transform: translateX(5px);
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-left: 4px solid #c62828;
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive design */
+@media (max-width: 1100px) {
+  .sessionsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .liveSessionsContainer {
+    flex-direction: column;
+  }
+
+  .skillCategory {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0;
+    padding: 15px;
+  }
+
+  .sessionContainer {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .sessionsBackground {
+    position: static;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .categoryShower {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .Categories {
+    margin: 4px;
+    padding: 10px 14px;
+  }
+
+  .Categories:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 768px) {
+  .sessionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sessionDateTime {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sessionContainer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sessionHeader {
+    padding: 15px;
+  }
+
+  .sessionDetails {
+    padding: 15px;
+  }
+
+  .sessionMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .sessionCourseName {
+    font-size: 1.2rem;
+  }
+}

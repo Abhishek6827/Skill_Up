@@ -1,0 +1,45 @@
+/* .borderAnimation:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+  }
+  .borderAnimation:hover:after {
+    width: 100%;
+    background: black;
+  } */
+
+ 
+
+
+  .Avatar:hover{
+    transform: scale(1.1);
+    transition: all 0.1s linear;
+    cursor:pointer;
+  }
+  
+  
+  .homeButton, .blogButton,.sessionButton{
+    /* border: 1px solid black; */
+    padding: 5px;
+    color: black;
+    background-color: transparent;
+    color: black;
+    border-radius: 5px;
+   
+  }
+  
+ a.active{
+   font-weight:800;
+   font-size: 18px;
+   border-bottom: 2px solid rgb(224, 165, 82);
+   width: fit-content;
+  }
+
+
+  
+
+ 

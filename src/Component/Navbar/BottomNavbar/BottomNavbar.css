@@ -1,0 +1,73 @@
+.bottomNavbar{
+  display:flex;
+  flex-direction: column;
+  height: 8rem;
+  border-top: 2px solid black;
+  position: relative;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: rgba(224, 165, 82, 0.751); */
+}
+
+.bottomConnect{
+  font-size:25px;
+  font-weight: 500;
+}
+
+.icon{
+  cursor: pointer;
+}
+
+.icon:hover{
+  transform: scale(1.1);
+  transition: all 0.1s linear;
+  color:rgba(224, 165, 82);
+}
+
+.bttomNavbarIcons{
+  display:flex;
+  width:20%;
+  justify-content:space-between;
+}
+
+.rights{
+  font-size: 16px;
+}
+
+@media screen and (max-width:950px) {
+.bttomNavbarIcons{
+  width:30%;
+}
+.rights{
+  font-size: 15px;
+}
+}
+
+@media screen and (max-width:750px) {
+ 
+
+  .bttomNavbarIcons{
+    width:50%;
+  }
+  .rights{
+    font-size: 14px;
+  }
+  }
+
+  @media screen and (max-width:625px) {
+    .bttomNavbarIcons{
+      width:40%;
+    }
+    .rights{
+      font-size: 12px;
+    }
+
+    .icon{
+      width: 25px;
+      height: 25px;
+    }
+
+    .bottomConnect{
+      font-size: 20px;
+    }
+    }

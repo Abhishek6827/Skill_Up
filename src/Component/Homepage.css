@@ -1,0 +1,194 @@
+/* .content:hover{
+    box-shadow: 0px 0px 10px 2px rgba(96, 94, 94, 0.377);
+    transition: all 0.2s ease-in-out;
+} */
+
+/* .blogImageWrapper{
+width:100%;
+height:15rem;
+}
+
+.blogImage{
+ border-radius: 5px;   
+}
+
+.blogImage:hover{
+ transform:scale(1.1);
+ transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1) ;
+} */
+
+.homeBlogContainer {
+  padding: 0 10px;
+  height: 52rem;
+  overflow-y: hidden;
+  margin-bottom: 100px;
+}
+
+.mainBlogWrapper {
+  display: flex;
+  height: 400px;
+  margin-bottom: 0.5rem;
+}
+.mainBlogImage {
+  flex: 0.7;
+}
+
+.blogImage {
+  width: 100%;
+  height: 100%;
+}
+.mainBlogTextSection {
+  display: flex;
+  flex: 0.3;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items:center ; */
+  padding: 40px 30px;
+  background-color: rgb(224, 165, 82);
+}
+
+.mainVideoTextSection {
+  display: flex;
+  flex: 0.3;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items:center ; */
+  padding: 40px 30px;
+  background-color: rgb(209 209 138);
+}
+
+.mainBlogTitle {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.mainBlogText {
+  display: flex;
+  overflow-y: scroll;
+  margin-top: 30px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.mainBlogText::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.mainBlogText {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.dots {
+  flex: 0.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.mainBlogButton {
+  background-color: transparent;
+  padding: 10px 20px;
+  /* width: 40px; */
+  border: 1.5px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px auto;
+}
+
+.mainBlogButton:hover {
+  border: 1.5px solid white;
+  color: white;
+}
+
+.mainBlogButton > a:hover {
+  color: white;
+}
+
+.blogGrid {
+  margin-top: 0.3rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: auto auto auto;
+}
+
+.blogImg {
+  /* width: 400px; */
+  width: 100%;
+  height: 200px;
+}
+
+.blogWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #e7e7e7;
+  padding: 0 0 20px 0;
+}
+
+.blogTextWrapper {
+  height: 150px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.2rem;
+  padding: 0 0.3rem;
+}
+
+.blogText {
+  /* text-align: justify; */
+  font-size: 16px;
+  line-height: 1.5rem;
+  padding: 0 0.5rem;
+  height: 150px;
+  overflow-y: hidden;
+}
+
+.blogTitle {
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 0.5rem;
+  margin: 0 0 10px 0;
+}
+
+.BlogButton {
+  width: 120px;
+  height: 35px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 450;
+  border: 1.5px solid rgb(224, 165, 82);
+  background-color: rgb(224, 165, 82);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  color: black;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.VideoButton {
+  width: 120px;
+  height: 35px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 450;
+  border: 1.5px solid rgb(209 209 138);
+  background-color: rgb(209 209 138);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  color: black;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.emptySearch {
+  position: absolute;
+  left: 60%;
+  right: 40%;
+  top: 60%;
+  bottom: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

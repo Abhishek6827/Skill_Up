@@ -1,0 +1,22 @@
+.infoTitle{
+    font-size: 16px;
+    font-weight:400;
+    margin:0.3rem 0;
+}
+
+.addProfilePic{
+  position:absolute; 
+  color: rgb(103, 101, 101);
+  height: 40px;
+  width: 40px;
+}
+
+.addProfilePicButton{
+    position:relative; 
+    width: 50px;
+    opacity: 0;
+}
+
+.addProfilePicButton:hover,.addProfilePic:hover{
+    cursor: pointer;
+}

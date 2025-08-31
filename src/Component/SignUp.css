@@ -1,0 +1,68 @@
+.signUpContainer{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-items: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    height: 100vh;
+    width: 80wh;
+    top: 10rem;
+    background-image: url("./SVG/Background.svg");
+    background-repeat: no-repeat;
+}
+
+.SignupLogo{
+  height:5rem;
+  width: 15rem;
+}
+
+
+.SignupImage{
+    margin-top:"2rem";
+    height:70%;
+    width:70%;
+  }
+  
+  .Left{
+    display: flex;
+    justify-Items:center;
+    align-Items:center;
+    flex-direction:column;
+    flex:1;
+  }
+  
+  .Right{
+    display: flex;
+    justify-Items:center;
+    align-Items:center;
+    flex-direction:column;
+    flex:1;
+  }
+  
+  @media screen and (max-width:1000px) {
+    .signUpContainer{
+        display: flex;
+        flex-direction: column;
+    }   
+
+    .SignupImage{
+        display:none;
+    }
+
+    .Left{
+        flex: 0.4;
+    }
+    .Right{
+       flex:0.6
+    }
+    .SignupLogo{
+      margin-top: 5rem;  
+    }
+}

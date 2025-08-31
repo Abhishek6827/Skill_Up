@@ -1,0 +1,167 @@
+
+body
+{
+	overflow-x: hidden;
+}
+section
+{   
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: 20px;
+	width: 100%;
+	background: white;
+}
+
+.MyInfo{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+text-align: justify;
+line-height:1.5;
+}
+
+
+.container
+{
+	position: relative;
+	width: 100%;
+	max-width: 1000px;
+	margin-top: 5rem;
+	padding: 50px;
+	background: rgba(255,255,255,0.1);
+	box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+	border: 1px solid rgba(255,255,255,0.25);
+	border-right: 1px solid rgba(255,255,255,0.1);
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+	border-radius: 10px;
+	overflow: hidden;
+	backdrop-filter: blur(24px);
+}
+
+.container h2
+{
+	width: 100%;
+	text-align: center;
+	color: rgb(224, 165, 82);
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+.container .row100
+{
+	position: relative;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+.container .col
+{
+	position: relative;
+	width: 100%;
+	padding: 0 10px;
+	margin: 30px 0 20px;
+}
+.container .col .inputBox
+{
+	position: relative;
+	width: 100%;
+	height: 40px;
+	color: black;
+}
+.container .col .inputBox input,
+.container .col .inputBox textarea
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	box-shadow: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	padding: 0 10px;
+	z-index: 1;
+	color: #000;
+}
+.container .col .inputBox .text
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 40px;
+	font-size: 18px;
+	padding: 0 10px;
+	display: block;
+	transition: 0.5s;
+	pointer-events: none;
+}
+.container .row100 .col .inputBox input:focus + .text,
+.container .row100 .col .inputBox input:valid + .text,
+.container .row100 .col .inputBox textarea:focus + .text,
+.container .row100 .col .inputBox textarea:valid + .text
+{
+	top: -35px;
+	left: -10px;
+} 
+.container .row100 .col .inputBox .line
+{
+	position: absolute;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: 2px;
+	background:rgb(224, 165, 82);
+	transition: 0.5s;
+	border-radius: 2px;
+	pointer-events: none;
+}
+.container .row100 .col .inputBox input:focus ~ .line,
+.container .row100 .col .inputBox input:valid ~ .line
+{
+	height: 100%;
+}
+.container .row100 .col .inputBox.textarea
+{
+	position: relative;
+	width: 100%;
+	height: 100px;
+	padding: 10px 0;
+}
+.container .row100 .col .inputBox textarea:focus ~ .line,
+.container .row100 .col .inputBox textarea:valid ~ .line
+{
+	height: 100%;
+}
+.container .row100 .col input[type="submit"]
+{
+	border: none;
+	padding: 10px 40px;
+	cursor: pointer;
+	outline: none;
+	background: rgb(224, 165, 82);
+	color: #000;
+	font-weight: 600;
+	font-size: 18px;
+	border-radius: 2px;
+}
+@media (max-width: 768px)
+{
+	section::before
+	{
+		transform: translate(-200px,-180px);
+	}
+	section::after
+	{
+		transform: translate(220px,180px);
+	}
+	.container
+	{
+		padding: 20px;
+	}
+	.container h2
+	{
+		font-size: 28px;
+	}
+}
