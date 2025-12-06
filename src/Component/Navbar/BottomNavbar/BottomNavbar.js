@@ -34,7 +34,7 @@ const BottomNavbar = () => {
             style={{ color: "black" }}
             target="_blank"
             rel="noreferrer"
-            href="https://www.linkedin.com/in/abhishek-chauhan-185747231"
+            href="https://www.linkedin.com/in/abhishek-tiwariiii/"
           >
             <BsLinkedin size={30} className="icon" />
           </a>

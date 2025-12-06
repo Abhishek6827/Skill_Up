@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { getDocs, collection, query, where } from "firebase/firestore";
-import { db } from "../../firebase";
+import React, { useState, useEffect, useCallback } from "react";
 import { Avatar } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
 import { MdContentCopy } from "react-icons/md";
@@ -8,6 +6,94 @@ import { Fade } from "react-awesome-reveal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./LiveSession.css";
+
+// Sample data for 6 sessions across all categories
+const sampleSessions = [
+  {
+    id: "1",
+    CourseName: "Italian Cooking Masterclass",
+    Category: "Cooking",
+    SessionDuration: "2 hours",
+    SessionDate: "2023-11-15",
+    StartTime: "18:00",
+    Description:
+      "Learn to make authentic pasta and sauces from an Italian chef with 20 years of experience.",
+    Link: "https://meet.google.com/abc-def-ghi",
+    volunteerImage: "https://randomuser.me/api/portraits/men/32.jpg",
+    volunteerName: "Marco Rossi",
+    volunteerEmail: "marco.rossi@chef.com",
+  },
+  {
+    id: "2",
+    CourseName: "Web Development Fundamentals",
+    Category: "Computer science",
+    SessionDuration: "3 hours",
+    SessionDate: "2023-11-16",
+    StartTime: "14:00",
+    Description:
+      "Introduction to HTML, CSS, and JavaScript for beginners. Build your first website in this interactive session.",
+    Link: "https://zoom.us/j/123456789",
+    volunteerImage: "https://randomuser.me/api/portraits/women/44.jpg",
+    volunteerName: "Sarah Johnson",
+    volunteerEmail: "sarah@devacademy.com",
+  },
+  {
+    id: "3",
+    CourseName: "Guitar Basics for Beginners",
+    Category: "Music",
+    SessionDuration: "1.5 hours",
+    SessionDate: "2023-11-17",
+    StartTime: "17:30",
+    Description:
+      "Learn basic chords, strumming patterns, and play your first song. No prior experience needed.",
+    Link: "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ABCD123",
+    volunteerImage: "https://randomuser.me/api/portraits/men/22.jpg",
+    volunteerName: "David Wilson",
+    volunteerEmail: "david@guitarlessons.com",
+  },
+  {
+    id: "4",
+    CourseName: "Contemporary Dance Workshop",
+    Category: "Dance",
+    SessionDuration: "2 hours",
+    SessionDate: "2023-11-18",
+    StartTime: "11:00",
+    Description:
+      "Explore movement, expression, and basic contemporary dance techniques in this energizing session.",
+    Link: "https://us02web.zoom.us/j/987654321",
+    volunteerImage: "https://randomuser.me/api/portraits/women/67.jpg",
+    volunteerName: "Jessica Lee",
+    volunteerEmail: "jessica@danceacademy.org",
+  },
+  {
+    id: "5",
+    CourseName: "Portrait Photography Techniques",
+    Category: "Photography",
+    SessionDuration: "2.5 hours",
+    SessionDate: "2023-11-19",
+    StartTime: "15:00",
+    Description:
+      "Learn lighting, composition, and posing techniques for stunning portrait photography.",
+    Link: "https://meet.google.com/xyz-uvw-rst",
+    volunteerImage: "https://randomuser.me/api/portraits/men/55.jpg",
+    volunteerName: "Michael Chen",
+    volunteerEmail: "michael@photographyworkshops.com",
+  },
+  {
+    id: "6",
+    CourseName: "Watercolor Painting for Beginners",
+    Category: "Art & Craft",
+    SessionDuration: "2 hours",
+    SessionDate: "2023-11-20",
+    StartTime: "13:00",
+    Description:
+      "Discover the joy of watercolor painting. Learn basic techniques and create your first artwork.",
+    Link: "https://teams.microsoft.com/l/meetup-join/19%3ameeting_EFGH456",
+    volunteerImage: "https://randomuser.me/api/portraits/women/28.jpg",
+    volunteerName: "Emily Parker",
+    volunteerEmail: "emily@artstudio.com",
+  },
+];
 
 const LiveSession = () => {
   const [links, setLinks] = useState([]);
@@ -25,102 +111,7 @@ const LiveSession = () => {
     "Art & Craft",
   ];
 
-  // Sample data for 6 sessions across all categories
-  const sampleSessions = [
-    {
-      id: "1",
-      CourseName: "Italian Cooking Masterclass",
-      Category: "Cooking",
-      SessionDuration: "2 hours",
-      SessionDate: "2023-11-15",
-      StartTime: "18:00",
-      Description:
-        "Learn to make authentic pasta and sauces from an Italian chef with 20 years of experience.",
-      Link: "https://meet.google.com/abc-def-ghi",
-      volunteerImage: "https://randomuser.me/api/portraits/men/32.jpg",
-      volunteerName: "Marco Rossi",
-      volunteerEmail: "marco.rossi@chef.com",
-    },
-    {
-      id: "2",
-      CourseName: "Web Development Fundamentals",
-      Category: "Computer science",
-      SessionDuration: "3 hours",
-      SessionDate: "2023-11-16",
-      StartTime: "14:00",
-      Description:
-        "Introduction to HTML, CSS, and JavaScript for beginners. Build your first website in this interactive session.",
-      Link: "https://zoom.us/j/123456789",
-      volunteerImage: "https://randomuser.me/api/portraits/women/44.jpg",
-      volunteerName: "Sarah Johnson",
-      volunteerEmail: "sarah@devacademy.com",
-    },
-    {
-      id: "3",
-      CourseName: "Guitar Basics for Beginners",
-      Category: "Music",
-      SessionDuration: "1.5 hours",
-      SessionDate: "2023-11-17",
-      StartTime: "17:30",
-      Description:
-        "Learn basic chords, strumming patterns, and play your first song. No prior experience needed.",
-      Link: "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ABCD123",
-      volunteerImage: "https://randomuser.me/api/portraits/men/22.jpg",
-      volunteerName: "David Wilson",
-      volunteerEmail: "david@guitarlessons.com",
-    },
-    {
-      id: "4",
-      CourseName: "Contemporary Dance Workshop",
-      Category: "Dance",
-      SessionDuration: "2 hours",
-      SessionDate: "2023-11-18",
-      StartTime: "11:00",
-      Description:
-        "Explore movement, expression, and basic contemporary dance techniques in this energizing session.",
-      Link: "https://us02web.zoom.us/j/987654321",
-      volunteerImage: "https://randomuser.me/api/portraits/women/67.jpg",
-      volunteerName: "Jessica Lee",
-      volunteerEmail: "jessica@danceacademy.org",
-    },
-    {
-      id: "5",
-      CourseName: "Portrait Photography Techniques",
-      Category: "Photography",
-      SessionDuration: "2.5 hours",
-      SessionDate: "2023-11-19",
-      StartTime: "15:00",
-      Description:
-        "Learn lighting, composition, and posing techniques for stunning portrait photography.",
-      Link: "https://meet.google.com/xyz-uvw-rst",
-      volunteerImage: "https://randomuser.me/api/portraits/men/55.jpg",
-      volunteerName: "Michael Chen",
-      volunteerEmail: "michael@photographyworkshops.com",
-    },
-    {
-      id: "6",
-      CourseName: "Watercolor Painting for Beginners",
-      Category: "Art & Craft",
-      SessionDuration: "2 hours",
-      SessionDate: "2023-11-20",
-      StartTime: "13:00",
-      Description:
-        "Discover the joy of watercolor painting. Learn basic techniques and create your first artwork.",
-      Link: "https://teams.microsoft.com/l/meetup-join/19%3ameeting_EFGH456",
-      volunteerImage: "https://randomuser.me/api/portraits/women/28.jpg",
-      volunteerName: "Emily Parker",
-      volunteerEmail: "emily@artstudio.com",
-    },
-  ];
-
-  useEffect(() => {
-    getData();
-    return () => {
-      setLinks([]);
-    };
-  }, []);
-
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       setLoading(true);
       setError("");
@@ -142,7 +133,14 @@ const LiveSession = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    getData();
+    return () => {
+      setLinks([]);
+    };
+  }, [getData]);
 
   async function selectCategory(category) {
     try {
